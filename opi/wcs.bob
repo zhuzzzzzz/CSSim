@@ -1,0 +1,2121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2023-03-21 11:24:33 by zhu-->
+<display version="2.0.0">
+  <name>Display</name>
+  <width>1400</width>
+  <height>800</height>
+  <grid_step_x>5</grid_step_x>
+  <grid_step_y>5</grid_step_y>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <class>TITLE</class>
+    <text>水冷监测控制恒温系统</text>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
+    <width>550</width>
+    <height>31</height>
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+  </widget>
+  <widget type="group" version="2.0.0">
+    <name>设备1</name>
+    <macros>
+      <num>1</num>
+    </macros>
+    <x>20</x>
+    <y>35</y>
+    <width>435</width>
+    <height>710</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_3</name>
+      <text>控制模式</text>
+      <x>312</x>
+      <y>372</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED</name>
+      <class>ON_OFF</class>
+      <pv_name>run:state:$(num)</pv_name>
+      <x>312</x>
+      <y>143</y>
+      <width>65</width>
+      <off_color use_class="true">
+        <color name="Off" red="60" green="100" blue="60">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="On" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+      <square>true</square>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_1</name>
+      <text>运行状态</text>
+      <x>242</x>
+      <y>142</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_2</name>
+      <text>控制模式</text>
+      <x>242</x>
+      <y>167</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update</name>
+      <pv_name>ctrl:mode:$(num)</pv_name>
+      <x>312</x>
+      <y>167</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_4</name>
+      <text>水温</text>
+      <x>262</x>
+      <y>217</y>
+      <width>40</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry</name>
+      <pv_name>water:temp:$(num)</pv_name>
+      <x>312</x>
+      <y>217</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_5</name>
+      <text>设备温度</text>
+      <x>242</x>
+      <y>292</y>
+      <width>60</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_7</name>
+      <text>水流量</text>
+      <x>252</x>
+      <y>242</y>
+      <width>50</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_8</name>
+      <text>调节阀</text>
+      <x>242</x>
+      <y>322</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <rules>
+        <rule name="Hide" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0==0">
+            <value>false</value>
+          </exp>
+          <pv_name>ctrl:mode:$(num)</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="scaledslider" version="2.0.0">
+      <name>Scaled Slider_2</name>
+      <pv_name>water:valve:$(num)</pv_name>
+      <x>162</x>
+      <y>342</y>
+      <width>215</width>
+      <height>12</height>
+      <rules>
+        <rule name="Hide" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0==0">
+            <value>false</value>
+          </exp>
+          <pv_name>ctrl:mode:$(num)</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_9</name>
+      <text>调节阀开度</text>
+      <x>232</x>
+      <y>267</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_2</name>
+      <pv_name>water:flowmeter:$(num)</pv_name>
+      <x>312</x>
+      <y>242</y>
+      <width>65</width>
+      <precision>2</precision>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_3</name>
+      <pv_name>water:valve:$(num)</pv_name>
+      <x>312</x>
+      <y>267</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_4</name>
+      <pv_name>dev:thermometer:$(num)</pv_name>
+      <x>312</x>
+      <y>292</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_10</name>
+      <text>流量计故障率</text>
+      <x>212</x>
+      <y>27</y>
+      <width>85</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_5</name>
+      <pv_name>fault:ctrl:$(num)</pv_name>
+      <x>307</x>
+      <y>27</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_11</name>
+      <text>设定温度</text>
+      <x>242</x>
+      <y>192</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_6</name>
+      <pv_name>set:temp:$(num)</pv_name>
+      <x>312</x>
+      <y>192</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_12</name>
+      <text>水温波动</text>
+      <x>237</x>
+      <y>52</y>
+      <width>60</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_7</name>
+      <pv_name>water:fluc:$(num)</pv_name>
+      <x>307</x>
+      <y>52</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_8</name>
+      <pv_name>kp:$(num)</pv_name>
+      <x>227</x>
+      <y>97</y>
+      <width>45</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_9</name>
+      <pv_name>ki:$(num)</pv_name>
+      <x>282</x>
+      <y>97</y>
+      <width>40</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_10</name>
+      <pv_name>kd:$(num)</pv_name>
+      <x>332</x>
+      <y>97</y>
+      <width>40</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_13</name>
+      <text>KP</text>
+      <x>242</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_14</name>
+      <text>KI</text>
+      <x>294</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_15</name>
+      <text>KD</text>
+      <x>342</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="stripchart" version="2.1.0">
+      <name>Strip Chart</name>
+      <x>32</x>
+      <y>442</y>
+      <width>355</width>
+      <height>210</height>
+      <show_toolbar>false</show_toolbar>
+      <start>2 minute</start>
+      <y_axes>
+        <y_axis>
+          <title></title>
+          <autoscale>true</autoscale>
+          <log_scale>false</log_scale>
+          <minimum>20.0</minimum>
+          <maximum>60.0</maximum>
+          <show_grid>false</show_grid>
+          <visible>true</visible>
+          <color>
+            <color name="Text" red="0" green="0" blue="0">
+            </color>
+          </color>
+        </y_axis>
+        <y_axis>
+          <title></title>
+          <autoscale>true</autoscale>
+          <log_scale>false</log_scale>
+          <minimum>0.0</minimum>
+          <maximum>100.0</maximum>
+          <show_grid>false</show_grid>
+          <visible>true</visible>
+          <color>
+            <color name="Text" red="0" green="0" blue="0">
+            </color>
+          </color>
+        </y_axis>
+      </y_axes>
+      <traces>
+        <trace>
+          <name>$(traces[0].y_pv)</name>
+          <y_pv>water:valve:$(num)</y_pv>
+          <axis>1</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color red="0" green="0" blue="255">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+        <trace>
+          <name>$(traces[1].y_pv)</name>
+          <y_pv>dev:thermometer:$(num)</y_pv>
+          <axis>0</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color name="MAJOR" red="255" green="0" blue="0">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+        <trace>
+          <name>$(traces[2].y_pv)</name>
+          <y_pv>set:temp:$(num)</y_pv>
+          <axis>0</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </color>
+          <line_width>1</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+      </traces>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_1</name>
+      <pv_name>run:state:$(num)</pv_name>
+      <x>202</x>
+      <y>392</y>
+      <width>80</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_18</name>
+      <text>运行状态</text>
+      <x>212</x>
+      <y>372</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>ctrl:mode:$(num)</pv_name>
+          <value>0</value>
+          <description>WritePV</description>
+        </action>
+        <action type="write_pv">
+          <pv_name>water:valve:$(num).OMSL</pv_name>
+          <value>closed_loop</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>Auto</text>
+      <x>302</x>
+      <y>392</y>
+      <width>40</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_1</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>ctrl:mode:$(num)</pv_name>
+          <value>1</value>
+          <description>WritePV</description>
+        </action>
+        <action type="write_pv">
+          <pv_name>water:valve:$(num).OMSL</pv_name>
+          <value>supervisory</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>Man</text>
+      <x>342</x>
+      <y>392</y>
+      <width>40</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_16</name>
+      <text>温度报警阈值</text>
+      <x>62</x>
+      <y>27</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_11</name>
+      <pv_name>dev:thermometer:$(num).HIGH</pv_name>
+      <x>52</x>
+      <y>47</y>
+      <width>50</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_12</name>
+      <pv_name>dev:thermometer:$(num).HIHI</pv_name>
+      <x>137</x>
+      <y>47</y>
+      <width>50</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_19</name>
+      <text>低</text>
+      <x>32</x>
+      <y>47</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_20</name>
+      <text>高</text>
+      <x>117</x>
+      <y>47</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_21</name>
+      <text>流量报警阈值</text>
+      <x>62</x>
+      <y>77</y>
+      <width>85</width>
+      <height>15</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_13</name>
+      <pv_name>water:flowmeter:$(num).LOW</pv_name>
+      <x>52</x>
+      <y>97</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_14</name>
+      <pv_name>water:flowmeter:$(num).LOLO</pv_name>
+      <x>137</x>
+      <y>97</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_22</name>
+      <text>低</text>
+      <x>32</x>
+      <y>97</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_23</name>
+      <text>高</text>
+      <x>117</x>
+      <y>97</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_24</name>
+      <text>运行控制方式</text>
+      <x>42</x>
+      <y>137</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_2</name>
+      <pv_name>opi:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>157</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_25</name>
+      <text>温度联锁逻辑</text>
+      <x>42</x>
+      <y>197</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_3</name>
+      <pv_name>temp:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>217</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_26</name>
+      <text>流量联锁逻辑</text>
+      <x>42</x>
+      <y>257</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_4</name>
+      <pv_name>flowmeter:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>277</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_27</name>
+      <text>温度报警状态</text>
+      <x>137</x>
+      <y>197</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_1</name>
+      <class>GOOD_BAD</class>
+      <pv_name>temp:state:$(num)</pv_name>
+      <x>162</x>
+      <y>217</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_28</name>
+      <text>流量报警状态</text>
+      <x>137</x>
+      <y>257</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_2</name>
+      <class>GOOD_BAD</class>
+      <pv_name>flowmeter:state:$(num)</pv_name>
+      <x>162</x>
+      <y>277</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_29</name>
+      <text>设备报警状态</text>
+      <x>137</x>
+      <y>137</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_3</name>
+      <class>GOOD_BAD</class>
+      <pv_name>device:alarm:$(num)</pv_name>
+      <x>162</x>
+      <y>157</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_2</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>device:alarm:$(num)</pv_name>
+          <value>1</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>触发报警</text>
+      <x>32</x>
+      <y>392</y>
+      <width>60</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_3</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>device:alarm:$(num)</pv_name>
+          <value>0</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>解除报警</text>
+      <x>102</x>
+      <y>392</y>
+      <width>60</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_5</name>
+      <pv_name>global:ctrl:$(num)</pv_name>
+      <x>32</x>
+      <y>342</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_30</name>
+      <text>全局联锁控制</text>
+      <x>42</x>
+      <y>322</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+  <widget type="group" version="2.0.0">
+    <name>设备2</name>
+    <macros>
+      <num>2</num>
+    </macros>
+    <x>455</x>
+    <y>35</y>
+    <width>435</width>
+    <height>710</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_143</name>
+      <text>控制模式</text>
+      <x>312</x>
+      <y>372</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_20</name>
+      <class>ON_OFF</class>
+      <pv_name>run:state:$(num)</pv_name>
+      <x>312</x>
+      <y>143</y>
+      <width>65</width>
+      <off_color use_class="true">
+        <color name="Off" red="60" green="100" blue="60">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="On" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+      <square>true</square>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_144</name>
+      <text>运行状态</text>
+      <x>242</x>
+      <y>142</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_145</name>
+      <text>控制模式</text>
+      <x>242</x>
+      <y>167</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_20</name>
+      <pv_name>ctrl:mode:$(num)</pv_name>
+      <x>312</x>
+      <y>167</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_146</name>
+      <text>水温</text>
+      <x>262</x>
+      <y>217</y>
+      <width>40</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_59</name>
+      <pv_name>water:temp:$(num)</pv_name>
+      <x>312</x>
+      <y>217</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_147</name>
+      <text>设备温度</text>
+      <x>242</x>
+      <y>292</y>
+      <width>60</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_148</name>
+      <text>水流量</text>
+      <x>252</x>
+      <y>242</y>
+      <width>50</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_149</name>
+      <text>调节阀</text>
+      <x>242</x>
+      <y>322</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <rules>
+        <rule name="Hide" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0==0">
+            <value>false</value>
+          </exp>
+          <pv_name>ctrl:mode:$(num)</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="scaledslider" version="2.0.0">
+      <name>Scaled Slider_7</name>
+      <pv_name>water:valve:$(num)</pv_name>
+      <x>162</x>
+      <y>342</y>
+      <width>215</width>
+      <height>12</height>
+      <rules>
+        <rule name="Hide" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0==0">
+            <value>false</value>
+          </exp>
+          <pv_name>ctrl:mode:$(num)</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_150</name>
+      <text>调节阀开度</text>
+      <x>232</x>
+      <y>267</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_21</name>
+      <pv_name>water:flowmeter:$(num)</pv_name>
+      <x>312</x>
+      <y>242</y>
+      <width>65</width>
+      <precision>2</precision>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_22</name>
+      <pv_name>water:valve:$(num)</pv_name>
+      <x>312</x>
+      <y>267</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_23</name>
+      <pv_name>dev:thermometer:$(num)</pv_name>
+      <x>312</x>
+      <y>292</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_151</name>
+      <text>流量计故障率</text>
+      <x>212</x>
+      <y>27</y>
+      <width>85</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_60</name>
+      <pv_name>fault:ctrl:$(num)</pv_name>
+      <x>307</x>
+      <y>27</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_152</name>
+      <text>设定温度</text>
+      <x>242</x>
+      <y>192</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_61</name>
+      <pv_name>set:temp:$(num)</pv_name>
+      <x>312</x>
+      <y>192</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_153</name>
+      <text>水温波动</text>
+      <x>237</x>
+      <y>52</y>
+      <width>60</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_62</name>
+      <pv_name>water:fluc:$(num)</pv_name>
+      <x>307</x>
+      <y>52</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_63</name>
+      <pv_name>kp:$(num)</pv_name>
+      <x>227</x>
+      <y>97</y>
+      <width>45</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_64</name>
+      <pv_name>ki:$(num)</pv_name>
+      <x>282</x>
+      <y>97</y>
+      <width>40</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_65</name>
+      <pv_name>kd:$(num)</pv_name>
+      <x>332</x>
+      <y>97</y>
+      <width>40</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_154</name>
+      <text>KP</text>
+      <x>242</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_155</name>
+      <text>KI</text>
+      <x>294</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_156</name>
+      <text>KD</text>
+      <x>342</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="stripchart" version="2.1.0">
+      <name>Strip Chart_5</name>
+      <x>32</x>
+      <y>442</y>
+      <width>355</width>
+      <height>210</height>
+      <show_toolbar>false</show_toolbar>
+      <start>2 minute</start>
+      <y_axes>
+        <y_axis>
+          <title></title>
+          <autoscale>true</autoscale>
+          <log_scale>false</log_scale>
+          <minimum>20.0</minimum>
+          <maximum>60.0</maximum>
+          <show_grid>false</show_grid>
+          <visible>true</visible>
+          <color>
+            <color name="Text" red="0" green="0" blue="0">
+            </color>
+          </color>
+        </y_axis>
+        <y_axis>
+          <title></title>
+          <autoscale>true</autoscale>
+          <log_scale>false</log_scale>
+          <minimum>0.0</minimum>
+          <maximum>100.0</maximum>
+          <show_grid>false</show_grid>
+          <visible>true</visible>
+          <color>
+            <color name="Text" red="0" green="0" blue="0">
+            </color>
+          </color>
+        </y_axis>
+      </y_axes>
+      <traces>
+        <trace>
+          <name>$(traces[0].y_pv)</name>
+          <y_pv>water:valve:$(num)</y_pv>
+          <axis>1</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color red="0" green="0" blue="255">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+        <trace>
+          <name>$(traces[1].y_pv)</name>
+          <y_pv>dev:thermometer:$(num)</y_pv>
+          <axis>0</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color name="MAJOR" red="255" green="0" blue="0">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+        <trace>
+          <name>$(traces[2].y_pv)</name>
+          <y_pv>set:temp:$(num)</y_pv>
+          <axis>0</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </color>
+          <line_width>1</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+      </traces>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_26</name>
+      <pv_name>run:state:$(num)</pv_name>
+      <x>202</x>
+      <y>392</y>
+      <width>80</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_157</name>
+      <text>运行状态</text>
+      <x>212</x>
+      <y>372</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_20</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>ctrl:mode:$(num)</pv_name>
+          <value>0</value>
+          <description>WritePV</description>
+        </action>
+        <action type="write_pv">
+          <pv_name>water:valve:$(num).OMSL</pv_name>
+          <value>closed_loop</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>Auto</text>
+      <x>302</x>
+      <y>392</y>
+      <width>40</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_21</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>ctrl:mode:$(num)</pv_name>
+          <value>1</value>
+          <description>WritePV</description>
+        </action>
+        <action type="write_pv">
+          <pv_name>water:valve:$(num).OMSL</pv_name>
+          <value>supervisory</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>Man</text>
+      <x>342</x>
+      <y>392</y>
+      <width>40</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_158</name>
+      <text>温度报警阈值</text>
+      <x>62</x>
+      <y>27</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_66</name>
+      <pv_name>dev:thermometer:$(num).HIGH</pv_name>
+      <x>52</x>
+      <y>47</y>
+      <width>50</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_67</name>
+      <pv_name>dev:thermometer:$(num).HIHI</pv_name>
+      <x>137</x>
+      <y>47</y>
+      <width>50</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_159</name>
+      <text>低</text>
+      <x>32</x>
+      <y>47</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_160</name>
+      <text>高</text>
+      <x>117</x>
+      <y>47</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_161</name>
+      <text>流量报警阈值</text>
+      <x>62</x>
+      <y>77</y>
+      <width>85</width>
+      <height>15</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_68</name>
+      <pv_name>water:flowmeter:$(num).LOW</pv_name>
+      <x>52</x>
+      <y>97</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_69</name>
+      <pv_name>water:flowmeter:$(num).LOLO</pv_name>
+      <x>137</x>
+      <y>97</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_162</name>
+      <text>低</text>
+      <x>32</x>
+      <y>97</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_163</name>
+      <text>高</text>
+      <x>117</x>
+      <y>97</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_164</name>
+      <text>运行控制方式</text>
+      <x>42</x>
+      <y>137</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_27</name>
+      <pv_name>opi:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>157</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_165</name>
+      <text>温度联锁逻辑</text>
+      <x>42</x>
+      <y>197</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_28</name>
+      <pv_name>temp:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>217</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_166</name>
+      <text>流量联锁逻辑</text>
+      <x>42</x>
+      <y>257</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_29</name>
+      <pv_name>flowmeter:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>277</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_167</name>
+      <text>温度报警状态</text>
+      <x>137</x>
+      <y>197</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_21</name>
+      <class>GOOD_BAD</class>
+      <pv_name>temp:state:$(num)</pv_name>
+      <x>162</x>
+      <y>217</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_168</name>
+      <text>流量报警状态</text>
+      <x>137</x>
+      <y>257</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_22</name>
+      <class>GOOD_BAD</class>
+      <pv_name>flowmeter:state:$(num)</pv_name>
+      <x>162</x>
+      <y>277</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_169</name>
+      <text>设备报警状态</text>
+      <x>137</x>
+      <y>137</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_23</name>
+      <class>GOOD_BAD</class>
+      <pv_name>device:alarm:$(num)</pv_name>
+      <x>162</x>
+      <y>157</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_22</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>device:alarm:$(num)</pv_name>
+          <value>1</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>触发报警</text>
+      <x>32</x>
+      <y>392</y>
+      <width>60</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_23</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>device:alarm:$(num)</pv_name>
+          <value>0</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>解除报警</text>
+      <x>102</x>
+      <y>392</y>
+      <width>60</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_30</name>
+      <pv_name>global:ctrl:$(num)</pv_name>
+      <x>32</x>
+      <y>342</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_170</name>
+      <text>全局联锁控制</text>
+      <x>42</x>
+      <y>322</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+  <widget type="group" version="2.0.0">
+    <name>设备3</name>
+    <macros>
+      <num>3</num>
+    </macros>
+    <x>890</x>
+    <y>35</y>
+    <width>435</width>
+    <height>710</height>
+    <widget type="label" version="2.0.0">
+      <name>Label_171</name>
+      <text>控制模式</text>
+      <x>312</x>
+      <y>372</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_24</name>
+      <class>ON_OFF</class>
+      <pv_name>run:state:$(num)</pv_name>
+      <x>312</x>
+      <y>143</y>
+      <width>65</width>
+      <off_color use_class="true">
+        <color name="Off" red="60" green="100" blue="60">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="On" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+      <square>true</square>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_172</name>
+      <text>运行状态</text>
+      <x>242</x>
+      <y>142</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_173</name>
+      <text>控制模式</text>
+      <x>242</x>
+      <y>167</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_24</name>
+      <pv_name>ctrl:mode:$(num)</pv_name>
+      <x>312</x>
+      <y>167</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_174</name>
+      <text>水温</text>
+      <x>262</x>
+      <y>217</y>
+      <width>40</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_70</name>
+      <pv_name>water:temp:$(num)</pv_name>
+      <x>312</x>
+      <y>217</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_175</name>
+      <text>设备温度</text>
+      <x>242</x>
+      <y>292</y>
+      <width>60</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_176</name>
+      <text>水流量</text>
+      <x>252</x>
+      <y>242</y>
+      <width>50</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_177</name>
+      <text>调节阀</text>
+      <x>242</x>
+      <y>322</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <rules>
+        <rule name="Hide" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0==0">
+            <value>false</value>
+          </exp>
+          <pv_name>ctrl:mode:$(num)</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="scaledslider" version="2.0.0">
+      <name>Scaled Slider_8</name>
+      <pv_name>water:valve:$(num)</pv_name>
+      <x>162</x>
+      <y>342</y>
+      <width>215</width>
+      <height>12</height>
+      <rules>
+        <rule name="Hide" prop_id="visible" out_exp="false">
+          <exp bool_exp="pv0==0">
+            <value>false</value>
+          </exp>
+          <pv_name>ctrl:mode:$(num)</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_178</name>
+      <text>调节阀开度</text>
+      <x>232</x>
+      <y>267</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_25</name>
+      <pv_name>water:flowmeter:$(num)</pv_name>
+      <x>312</x>
+      <y>242</y>
+      <width>65</width>
+      <precision>2</precision>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_26</name>
+      <pv_name>water:valve:$(num)</pv_name>
+      <x>312</x>
+      <y>267</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_27</name>
+      <pv_name>dev:thermometer:$(num)</pv_name>
+      <x>312</x>
+      <y>292</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_179</name>
+      <text>流量计故障率</text>
+      <x>212</x>
+      <y>27</y>
+      <width>85</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_71</name>
+      <pv_name>fault:ctrl:$(num)</pv_name>
+      <x>307</x>
+      <y>27</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_180</name>
+      <text>设定温度</text>
+      <x>242</x>
+      <y>192</y>
+      <width>60</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_72</name>
+      <pv_name>set:temp:$(num)</pv_name>
+      <x>312</x>
+      <y>192</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_181</name>
+      <text>水温波动</text>
+      <x>237</x>
+      <y>52</y>
+      <width>60</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_73</name>
+      <pv_name>water:fluc:$(num)</pv_name>
+      <x>307</x>
+      <y>52</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_74</name>
+      <pv_name>kp:$(num)</pv_name>
+      <x>227</x>
+      <y>97</y>
+      <width>45</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_75</name>
+      <pv_name>ki:$(num)</pv_name>
+      <x>282</x>
+      <y>97</y>
+      <width>40</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_76</name>
+      <pv_name>kd:$(num)</pv_name>
+      <x>332</x>
+      <y>97</y>
+      <width>40</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_182</name>
+      <text>KP</text>
+      <x>242</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_183</name>
+      <text>KI</text>
+      <x>294</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_184</name>
+      <text>KD</text>
+      <x>342</x>
+      <y>77</y>
+      <width>25</width>
+    </widget>
+    <widget type="stripchart" version="2.1.0">
+      <name>Strip Chart_6</name>
+      <x>32</x>
+      <y>442</y>
+      <width>355</width>
+      <height>210</height>
+      <show_toolbar>false</show_toolbar>
+      <start>2 minute</start>
+      <y_axes>
+        <y_axis>
+          <title></title>
+          <autoscale>true</autoscale>
+          <log_scale>false</log_scale>
+          <minimum>20.0</minimum>
+          <maximum>60.0</maximum>
+          <show_grid>false</show_grid>
+          <visible>true</visible>
+          <color>
+            <color name="Text" red="0" green="0" blue="0">
+            </color>
+          </color>
+        </y_axis>
+        <y_axis>
+          <title></title>
+          <autoscale>true</autoscale>
+          <log_scale>false</log_scale>
+          <minimum>0.0</minimum>
+          <maximum>100.0</maximum>
+          <show_grid>false</show_grid>
+          <visible>true</visible>
+          <color>
+            <color name="Text" red="0" green="0" blue="0">
+            </color>
+          </color>
+        </y_axis>
+      </y_axes>
+      <traces>
+        <trace>
+          <name>$(traces[0].y_pv)</name>
+          <y_pv>water:valve:$(num)</y_pv>
+          <axis>1</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color red="0" green="0" blue="255">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+        <trace>
+          <name>$(traces[1].y_pv)</name>
+          <y_pv>dev:thermometer:$(num)</y_pv>
+          <axis>0</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color name="MAJOR" red="255" green="0" blue="0">
+            </color>
+          </color>
+          <line_width>2</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+        <trace>
+          <name>$(traces[2].y_pv)</name>
+          <y_pv>set:temp:$(num)</y_pv>
+          <axis>0</axis>
+          <trace_type>2</trace_type>
+          <color>
+            <color name="OK" red="0" green="255" blue="0">
+            </color>
+          </color>
+          <line_width>1</line_width>
+          <point_type>0</point_type>
+          <point_size>10</point_size>
+          <visible>true</visible>
+        </trace>
+      </traces>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_31</name>
+      <pv_name>run:state:$(num)</pv_name>
+      <x>202</x>
+      <y>392</y>
+      <width>80</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_185</name>
+      <text>运行状态</text>
+      <x>212</x>
+      <y>372</y>
+      <width>60</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_24</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>ctrl:mode:$(num)</pv_name>
+          <value>0</value>
+          <description>WritePV</description>
+        </action>
+        <action type="write_pv">
+          <pv_name>water:valve:$(num).OMSL</pv_name>
+          <value>closed_loop</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>Auto</text>
+      <x>302</x>
+      <y>392</y>
+      <width>40</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_25</name>
+      <actions execute_as_one="true">
+        <action type="write_pv">
+          <pv_name>ctrl:mode:$(num)</pv_name>
+          <value>1</value>
+          <description>WritePV</description>
+        </action>
+        <action type="write_pv">
+          <pv_name>water:valve:$(num).OMSL</pv_name>
+          <value>supervisory</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>Man</text>
+      <x>342</x>
+      <y>392</y>
+      <width>40</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_186</name>
+      <text>温度报警阈值</text>
+      <x>62</x>
+      <y>27</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_77</name>
+      <pv_name>dev:thermometer:$(num).HIGH</pv_name>
+      <x>52</x>
+      <y>47</y>
+      <width>50</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_78</name>
+      <pv_name>dev:thermometer:$(num).HIHI</pv_name>
+      <x>137</x>
+      <y>47</y>
+      <width>50</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_187</name>
+      <text>低</text>
+      <x>32</x>
+      <y>47</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_188</name>
+      <text>高</text>
+      <x>117</x>
+      <y>47</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_189</name>
+      <text>流量报警阈值</text>
+      <x>62</x>
+      <y>77</y>
+      <width>85</width>
+      <height>15</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_79</name>
+      <pv_name>water:flowmeter:$(num).LOW</pv_name>
+      <x>52</x>
+      <y>97</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_80</name>
+      <pv_name>water:flowmeter:$(num).LOLO</pv_name>
+      <x>137</x>
+      <y>97</y>
+      <width>65</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_190</name>
+      <text>低</text>
+      <x>32</x>
+      <y>97</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_191</name>
+      <text>高</text>
+      <x>117</x>
+      <y>97</y>
+      <width>20</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_192</name>
+      <text>运行控制方式</text>
+      <x>42</x>
+      <y>137</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_32</name>
+      <pv_name>opi:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>157</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_193</name>
+      <text>温度联锁逻辑</text>
+      <x>42</x>
+      <y>197</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_33</name>
+      <pv_name>temp:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>217</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_194</name>
+      <text>流量联锁逻辑</text>
+      <x>42</x>
+      <y>257</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_34</name>
+      <pv_name>flowmeter:flag:$(num)</pv_name>
+      <x>32</x>
+      <y>277</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_195</name>
+      <text>温度报警状态</text>
+      <x>137</x>
+      <y>197</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_25</name>
+      <class>GOOD_BAD</class>
+      <pv_name>temp:state:$(num)</pv_name>
+      <x>162</x>
+      <y>217</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_196</name>
+      <text>流量报警状态</text>
+      <x>137</x>
+      <y>257</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_26</name>
+      <class>GOOD_BAD</class>
+      <pv_name>flowmeter:state:$(num)</pv_name>
+      <x>162</x>
+      <y>277</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_197</name>
+      <text>设备报警状态</text>
+      <x>137</x>
+      <y>137</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_27</name>
+      <class>GOOD_BAD</class>
+      <pv_name>device:alarm:$(num)</pv_name>
+      <x>162</x>
+      <y>157</y>
+      <width>30</width>
+      <height>30</height>
+      <off_color use_class="true">
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color use_class="true">
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_26</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>device:alarm:$(num)</pv_name>
+          <value>1</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>触发报警</text>
+      <x>32</x>
+      <y>392</y>
+      <width>60</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_27</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>device:alarm:$(num)</pv_name>
+          <value>0</value>
+          <description>WritePV</description>
+        </action>
+      </actions>
+      <text>解除报警</text>
+      <x>102</x>
+      <y>392</y>
+      <width>60</width>
+      <tooltip>$(actions)</tooltip>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button_35</name>
+      <pv_name>global:ctrl:$(num)</pv_name>
+      <x>32</x>
+      <y>342</y>
+      <width>105</width>
+      <height>30</height>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_198</name>
+      <text>全局联锁控制</text>
+      <x>42</x>
+      <y>322</y>
+      <width>85</width>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+  </widget>
+</display>
