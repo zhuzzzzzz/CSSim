@@ -1,0 +1,24 @@
+# Example substitutions file
+
+#file "db/circle.db" {
+#    { user = "zhu" }
+#}
+
+#file "db/dbExample1.db" {
+#    { user = "zhu" }
+#}
+
+#file db/dbExample2.db {
+#    pattern { user, no, scan }
+#        { "zhu", 1, "1 second" }
+#        { "zhu", 2, "2 second" }
+#        { "zhu", 3, "5 second" }
+#}
+
+file db/wcs_dev.db {
+    pattern { num }
+        { 1 }
+        { 2 }
+        { 3 }
+}
+

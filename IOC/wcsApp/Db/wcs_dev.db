@@ -1,0 +1,305 @@
+###########################################################
+#仿真基本参数部分
+record(bo, "run:state:$(num)")
+{
+	field(DESC,"run state of device $(num)")
+	field(PINI, "YES")#
+	field(DOL ,"0")#DOL虽为0，但calcout输出时会替代DOL的值
+	field(ZNAM, "Stopped")
+	field(ONAM, "Running")
+	#field(SCAN, "Passive")#Passive模式是默认的，不设置此项也可
+}
+record(bo, "ctrl:mode:$(num)")
+{
+	field(DESC,"control mode of device $(num)")
+	field(DOL, "0")
+	field(PINI, "YES")
+	field(ZNAM, "Automatic")
+	field(ONAM, "Manual")
+}
+record(ao, "water:temp0:$(num)")
+{
+	field(DESC,"water temperature provided")
+	field(PREC, "1")
+	field(EGU, "C")
+	field(DOL, "25")
+	field(DRVH, "100")
+	field(DRVL, "0")
+	field(HOPR, "100")
+	field(LOPR, "0")# XOPR字段决定GUI界面中部分部件的显示范围
+	field(PINI, "YES")
+}
+record(ao, "water:fluc:$(num)")
+{
+	field(DESC,"water temperature fluctuation limit")
+	field(PREC, "1")#PREC字段只决定Phoebus中的显示精度
+	field(EGU, "C")
+	field(DOL, "0")
+	field(PINI, "YES")
+}
+record(ao, "set:temp:$(num)")
+{
+	field(DESC,"set temperature for device $(num)")
+	field(PREC, "1")
+	field(EGU, "C")
+	field(DOL, "35")
+	field(PINI, "YES")
+}
+record(ao, "fault:ctrl:$(num)")
+{
+	field(DESC, "bad value probability of flowmeter")
+	field(PREC, "1")
+	field(EGU, "%")
+	field(DOL, "0")
+	field(HOPR, "100")
+	field(LOPR, "0")
+	field(DRVH, "100")
+	field(DRVL, "0")
+	field(PINI, "YES")
+}
+#
+##############################################
+#温度计算部分
+record(calc, "water:temp:$(num)")
+{
+	field(DESC,"water temperature at device point $(num)")
+	field(PREC, "1")
+	field(EGU, "C")
+	field(SCAN, "10 second")
+	field(INPA, "water:temp0:$(num)")
+	field(INPB, "water:fluc:$(num)")
+	field(CALC, "A + 2*(RNDM - 0.5)*B")
+	field(PINI, "YES")
+}
+record(ai, "dev:temp:$(num)")
+{
+	field(DESC,"temperature of device $(num)")
+	field(PREC, "1")
+	field(EGU, "C")
+	field(INP, "25")
+	field(PINI, "YES")
+}
+record(ai, "dev:thermometer:$(num)")
+{
+	field(DESC,"temperature obtained at device $(num)")
+	field(PREC, "1")
+	field(EGU, "C")
+	field(INP, "dev:temp:$(num)")
+	field(SCAN, "Passive")
+	field(HIGH, "40")
+	field(HIHI, "50")
+	field(HSV, "MINOR")
+	field(HHSV, "MAJOR")
+	field(PINI, "YES")
+}
+record(ao,"water:valve:$(num)")
+{
+	field(DESC,"valve for device $(num)")
+	field(PREC, "0")
+	field(EGU, "%")
+	field(SCAN, "Passive")
+	field(HOPR, "100")
+	field(LOPR, "0")
+	field(DRVH, "100")
+	field(DRVL, "0")
+	field(DOL, "pid:calc:$(num)")
+	field(OMSL, "closed_loop")
+	field(FLNK, "water:flowmeter:$(num)")
+}
+record(calc,"water:flowmeter:$(num)")
+{
+	field(DESC,"water flowmeter obtained at device $(num)")
+	field(PREC, "4")
+	field(EGU, "L/s")
+	field(SCAN,  "Passive")
+	field(INPA, "fault:ctrl:$(num)")
+	field(INPB, "water:valve:$(num)")
+	field(INPC, "0.0739")
+	field(INPD, "0.36")
+	field(CALC, "(A/100<RNDM)?(C*B+D):(0.2)")
+	field(LOW, "0.5")
+	field(LOLO, "0.3")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+record(calcout,"temp:calc:$(num)")
+{
+	field(DESC,"water temperature calc at device $(num)")
+	field(PREC, "1")
+	field(EGU, "C")
+	field(SCAN,  ".5 second")
+	field(INPA, "run:state:$(num)")
+	field(INPB, "dev:thermometer:$(num) PP")
+	field(INPC, "water:temp:$(num)")
+	field(INPD, "water:flowmeter:$(num) PP")
+	field(CALC, "B + A*0.5 - 0.025*D*(B-C)")
+	field(OUT, "dev:temp:$(num)")
+}
+#
+##########################################
+#PID控制计算部分
+record(ai, "kp:$(num)")
+{
+	field(PREC, "1")
+	field(INP, "50")
+	field(PINI, "YES")
+}
+record(ai, "ki:$(num)")
+{
+	field(PREC, "1")
+	field(INP, "5")
+	field(PINI, "YES")
+}
+record(ai, "kd:$(num)")
+{
+	field(PREC, "1")
+	field(INP, "2")
+	field(PINI, "YES")
+}
+record(calc, "error:$(num)")
+{
+	field(DESC, "temperature error")
+	field(EGU, "C")
+	field(PREC, "1")
+	field(SCAN, "Passive")
+	field(INPA, "set:temp:$(num)")
+   	field(INPB, "dev:temp:$(num)")
+	field(CALC, "B-A")
+}
+record(calc, "error:integral:$(num)")
+{
+	field(DESC, "temperature integral error")
+	field(PREC, "1")
+	field(SCAN, ".5 second")
+	field(INPA, "error:$(num) PP")
+   	field(INPB, "error:integral:$(num)")
+	field(INPC, "20")
+	field(CALC, "(B+A<-C)?-C:((A+B>C)?C:(A+B))")
+}
+record(calc, "error:difference:$(num)")
+{
+	field(DESC, "temperature difference error")
+	field(PREC, "1")
+	field(SCAN, ".5 second")
+	field(INPA, "error:$(num)")
+   	field(INPB, "error:$(num) PP")
+	field(CALC, "(B-A)*2")
+}
+record(calc, "pid:calc:$(num)")
+{
+	field(DESC, "PID computation")
+	field(PREC, "0")
+	field(SCAN, ".5 second")
+	field(INPA, "kp:$(num)")
+	field(INPB, "error:$(num)")
+	field(INPC, "ki:$(num)")
+	field(INPD, "error:integral:$(num)")
+	field(INPE, "kd:$(num)")
+	field(INPF, "error:difference:$(num)")
+	field(CALC, "(A*B+C*D+E*F>0)?(A*B+C*D+E*F):0")
+	field(FLNK, "water:valve:$(num)")
+}
+#
+#################################################
+#报警联锁部分
+#
+record(bo, "device:alarm:$(num)")
+{
+	field(DESC,"device interlock alarm")
+	field(DOL, "0")#
+	field(PINI, "YES")#
+	#field(SCAN, "Passive")#
+	field(ZNAM, "No Alarm")
+	field(ONAM, "Alarming")
+}
+record(bo, "opi:flag:$(num)")
+{
+	field(DESC,"opi alarm  interlock control mode")
+	field(DOL, "0")
+	field(PINI, "YES")
+	field(ONAM, "Manual")
+	field(ZNAM, "Automatic")
+}
+record(bo, "temp:flag:$(num)")
+{
+	field(DESC,"temperature interlock mode of device $(num)")
+	field(DOL, "1")
+	field(PINI, "YES")
+	field(ONAM, "Enabled")
+	field(ZNAM, "Disabled")
+}
+record(bo, "flowmeter:flag:$(num)")
+{
+	field(DESC,"flowmeter interlock mode of device $(num)")
+	field(DOL, "0")
+	field(PINI, "YES")
+	field(ONAM, "Enabled")
+	field(ZNAM, "Disabled")
+}
+record(calc, "temp:state:$(num)")
+{
+	field(DESC, "temperature interlock state")
+	field(SCAN, "Passive")
+	field(INPA, "dev:thermometer:$(num)")
+	field(INPB, "dev:thermometer:$(num).HIHI")
+	field(CALC, "A>=B?1:0")
+}
+record(calc, "flowmeter:state:$(num)")
+{
+	field(DESC, "flowmeter interlock state")
+	field(SCAN, "Passive")
+	field(INPA, "water:flowmeter:$(num)")
+	field(INPB, "water:flowmeter:$(num).LOLO")
+	field(CALC, "A<=B?1:0")
+}
+record(calcout, "interlock:logic:$(num)")
+{
+	field(SCAN, ".1 second")
+	field(INPA, "temp:flag:$(num)")
+	field(INPB, "flowmeter:flag:$(num)")
+	field(INPC, "temp:state:$(num) PP")#1 for alarm
+	field(INPD, "flowmeter:state:$(num) PP")
+	field(INPE, "opi:flag:$(num)")#1 for manual
+	field(CALC, "!E&&((A&&C) || (B&&D))")
+	field(OOPT, "When Non-zero")#只有1的时候输出，锁定报警状态
+	field(OUT, "device:alarm:$(num) PP")
+	field(FLNK, "global:interlock:logic:$(num)")
+#不管使用bi或bo时 calc record写数据时需要使用Passive PP方式促使opi界面实时更新，操作员点击opi按钮写数据时自动实时更新
+}
+record(calcout, "stop:control:$(num)")
+{
+	field(SCAN, ".1 second")
+	field(INPA, "device:alarm:$(num)")
+	field(INPB, "opi:flag:$(num)")
+	field(CALC, "!A")
+	field(OOPT, "When Zero")#只有0的时候输出，强制控制停机
+	field(OUT, "run:state:$(num) PP")#指定PP非常重要。使输出链接的record运行，将实时值更新为该输出的值，此种方式下不指定PP将使OUT输出无效
+				      #
+}
+#
+#################################################
+#全局联锁
+record(bi, "global:ctrl:$(num)")
+{
+	field(DESC,"device global interlock control mode")
+	field(INP, "1")#1 for global control
+	field(PINI, "YES")
+	field(ONAM, "Enable")
+	field(ZNAM, "Disable")
+}
+record(calcout, "global:interlock:logic:$(num)")
+{
+	field(SCAN, "Passive")
+	field(INPA, "global:ctrl:$(num)")
+	field(INPB, "device:alarm:1")
+	field(INPC, "device:alarm:2")
+	field(INPD, "device:alarm:3")
+	field(CALC, "!(A&&(B||C||D))")
+	field(OOPT, "When Zero")
+	field(OUT, "run:state:$(num) PP")#指定PP非常重要。使输出链接的record运行，将实时值更新为该输出的值，此种方式下不指定PP将使OUT输出无效
+}
+
+
+
+
+
