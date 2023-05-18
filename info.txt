@@ -1,4 +1,17 @@
-- 更新水冷控制仿真代码，并使用最简方式部署仿真IOC
-- 更新水冷控制仿真opi界面
-- 添加boot.sh启动脚本
-- git规范， 并添加gitignore.txt文件提示git管理范围
+- 基于水冷控制IOC仿真代码，模拟EPICS Runtime
+- 引入git管理，添加git规范文件ignore.txt
+
+项目结构:
+
+- /IOC
+	IOC目录
+- /opi
+	opi界面目录
+- /code
+	相关脚本代码存放目录
+- boot.sh
+	项目一键启动脚本
+- ignore.txt
+	本项目的git管理提示文档
+
+

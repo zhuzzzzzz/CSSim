@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-03-21 11:24:33 by zhu-->
+<!--Saved on 2023-05-18 16:17:13 by zhu-->
 <display version="2.0.0">
   <name>Display</name>
   <width>1400</width>
@@ -307,7 +307,7 @@
       <y_axes>
         <y_axis>
           <title></title>
-          <autoscale>true</autoscale>
+          <autoscale>false</autoscale>
           <log_scale>false</log_scale>
           <minimum>20.0</minimum>
           <maximum>60.0</maximum>
@@ -320,7 +320,7 @@
         </y_axis>
         <y_axis>
           <title></title>
-          <autoscale>true</autoscale>
+          <autoscale>false</autoscale>
           <log_scale>false</log_scale>
           <minimum>0.0</minimum>
           <maximum>100.0</maximum>
@@ -1005,7 +1005,7 @@
       <y_axes>
         <y_axis>
           <title></title>
-          <autoscale>true</autoscale>
+          <autoscale>false</autoscale>
           <log_scale>false</log_scale>
           <minimum>20.0</minimum>
           <maximum>60.0</maximum>
@@ -1018,7 +1018,7 @@
         </y_axis>
         <y_axis>
           <title></title>
-          <autoscale>true</autoscale>
+          <autoscale>false</autoscale>
           <log_scale>false</log_scale>
           <minimum>0.0</minimum>
           <maximum>100.0</maximum>
@@ -1703,7 +1703,7 @@
       <y_axes>
         <y_axis>
           <title></title>
-          <autoscale>true</autoscale>
+          <autoscale>false</autoscale>
           <log_scale>false</log_scale>
           <minimum>20.0</minimum>
           <maximum>60.0</maximum>
@@ -1716,7 +1716,7 @@
         </y_axis>
         <y_axis>
           <title></title>
-          <autoscale>true</autoscale>
+          <autoscale>false</autoscale>
           <log_scale>false</log_scale>
           <minimum>0.0</minimum>
           <maximum>100.0</maximum>

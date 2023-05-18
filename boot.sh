@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-PHOEBUS_PATH=/home/zhu/EPICS/product-sns-4.6.10-SNAPSHOT
+PHOEBUS_PATH=/home/zhu/Phoebus/product-sns-4.6.10-SNAPSHOT
 
 
 

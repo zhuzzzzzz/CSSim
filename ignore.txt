@@ -1,3 +1,5 @@
+MakeBaseApp.pl生成的.gitignore文件:
+#################################
 # Install directories
 /bin/
 /cfg/
@@ -27,3 +29,35 @@ O.*/
 *.log
 .*.swp
 .DS_Store
+
+
+###
+注:
+1) .gitignore文件是递归地作用于.gitignore文件当前目录及子目录，不会对上级目录产生影响
+2) .gitignore文件仅跟踪文件而不是目录，也就是说空目录不会对git status的结果产生影响
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
